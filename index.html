@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Sopir Ambulance RSDU Talaud 2025 (Rinci)</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f5f1; /* DIUBAH MENJADI ABU-ABU MUDA UNTUK KONTRAS */
+        }
+        .header-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        .card {
+            /* PERUBAHAN UTAMA ADA DI SINI */
+            background: linear-gradient(135deg, #fdfbf7 0%, #e6d7c3 100%); /* GRADIENT INSPIRASI CORAK BATIK */
+            border: 1px solid #e0d5c1;
+            border-radius: 8px; /* SEDIKIT MEMBULATKAN SUDUT UNTUK TAMPILAN LEBIH LEBUT */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12); /* BAYANGAN YANG LEBIH TEBAL UNTUK KONTRAS */
+            margin-bottom: 2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .card-header {
+            font-weight: bold;
+            border-bottom: none;
+            background-color: rgba(255, 255, 255, 0.9); /* HEADER SEMI-TRANSPARAN AGAR TETAP LIHAT GRADIEN */
+            border-radius: 8px 8px 0 0; /* SESUAIKAN DENGAN BORDER RADIUS CARD */
+        }
+        .list-group-item {
+            border: none;
+            border-bottom: 1px solid rgba(0,0,0,0.05); /* GARIS PEMBATAS YANG LEBIH HALUS */
+        }
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+        .sunday-item {
+            background-color: #fff8e1; /* WARNA KUNING MUDA UNTUK STANDBY, SEDIKIT LEBIH CERAH */
+            color: #856404;
+            font-weight: bold;
+            border-bottom: 2px dashed #856404; /* BATAS PUTUS-PUTUS WARNA GELAP UNTUK HARI MINGGU */
+            border-top: 2px dashed #856404; /* BATAS DI ATAS DAN BAWAH */
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+        .driver-name {
+            font-weight: 500;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+        }
+
+        /* ======================================== */
+        /* CSS KHUSUS UNTUK PRINTING */
+        /* ======================================== */
+        @media print {
+            /* Aturan ukuran dan orientasi kertas */
+            @page {
+                size: F4 portrait;
+                margin: 15mm;
+            }
+
+            /* Sembunyikan elemen yang tidak perlu */
+            header, footer, .alert, .no-print {
+                display: none !important;
+            }
+
+            /* KEMBALIKAN KE WARNA PUTIH UNTUK CETAK AGAR LEBIH BERSIH */
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                background-color: #fff !important; /* PASTIKAN BACKGROUND PUTIH SAAT CETAK */
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center; /* CENTERING VERTIKAL */
+                align-items: center; /* CENTERING HORIZONTAL */
+            }
+
+            main {
+                width: 100%;
+                max-width: 800px; /* BATASI LEBAR AGAR TIDAK TERLALU MEBAR */
+                background-color: #fff !important;
+                font-size: 11pt; /* UKURAN FONT YANG COCOK UNTUK PRINT */
+                line-height: 1.3;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* KEMBALIKAN KARTU AGAR RAPI SAAT DI PRINT */
+            .card {
+                box-shadow: none; /* HAPUS SHADOW */
+                border: 1px solid #dee2e6; /* BERI BORDER TIPIS */
+                margin-bottom: 20px;
+                page-break-inside: avoid; /* CEGAH PEMUTUSAN HALAMAN DI DALAM KARTU */
+                break-inside: avoid; /* STANDAR SYNTAX */
+                background-color: #fff !important; /* PASTIKAN WARNA PUTIH SAAT CETAK */
+            }
+            
+            /* ATUR HEADER KARTU UNTUK PRINT */
+            .card-header {
+                background-color: #f8f9fa !important; /* WARNA ABU-ABU MUDA */
+                -webkit-print-color-adjust: exact; /* PAKSA CETAK WARNA BACKGROUND */
+                print-color-adjust: exact;
+                color: #000 !important;
+                border-bottom: 1px solid #dee2e6 !important;
+            }
+
+            /* ATUR TAMPILAN HARI MINGGU UNTUK PRINT */
+            .sunday-item {
+                background-color: #fff8e1 !important; /* PASTIKAN WARNA KUNING MUDA */
+                color: #856404 !important;
+                font-weight: bold;
+                border: 2px dashed #856404; /* PASTIKAN BATAS PUTUS-PUTUS */
+                padding-top: 8px;
+                padding-bottom: 8px;
+            }
+
+            .card:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-primary text-white py-4 no-print">
+        <div class="container text-center">
+            <h1 class="header-title"><i class="bi bi-calendar-week"></i> Jadwal Piket Sopir Ambulance</h1>
+            <p class="lead mb-0">Rumah Sakit Daerah Umum (RSDU) Kabupaten Kepulauan Talaud</p>
+            <p class="mb-0">Tahun Anggaran 2025</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        
+        <!-- Keterangan -->
+        <div class="alert alert-success no-print" role="alert">
+            <h5 class="alert-heading"><i class="bi bi-info-circle-fill"></i> Informasi Jadwal Rinci</h5>
+            <p>Berikut adalah jadwal piket sopir secara harian. Jadwal dikelompokkan berdasarkan periode tugas (tanggal 17 hingga 16 bulan berikutnya).</p>
+            <hr>
+            <p class="mb-0"><strong>Catatan:</strong> Pada hari Minggu, seluruh sopir berstatus siaga (Standby). Hasil cetak diatur untuk kertas F4 Portrait dengan posisi tengah halaman. Hari Minggu ditandai dengan batas untuk memudahkan identifikasi. Untuk mencetak, silakan tekan <kbd>Ctrl+P</kbd> (atau <kbd>Cmd+P</kbd> di Mac).</p>
+        </div>
+
+        <!-- PERIODE 1: Februari - Maret -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="bi bi-calendar-range"></i> Periode 1: 17 Februari - 16 Maret 2025</h4>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    <!-- Februari 2025 -->
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 17 Feb 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 18 Feb 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 19 Feb 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 20 Feb 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 21 Feb 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 22 Feb 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 23 Feb 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 24 Feb 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 25 Feb 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 26 Feb 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 27 Feb 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 28 Feb 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 1 Mar 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 2 Mar 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 3 Mar 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 4 Mar 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 5 Mar 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 6 Mar 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 7 Mar 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 8 Mar 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 9 Mar 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 10 Mar 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 11 Mar 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 12 Mar 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 13 Mar 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 14 Mar 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 15 Mar 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 16 Mar 2025</span><span>Standby (Semua Sopir)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PERIODE 2: Maret - April -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="bi bi-calendar-range"></i> Periode 2: 17 Maret - 16 April 2025</h4>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 17 Mar 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 18 Mar 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 19 Mar 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 20 Mar 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 21 Mar 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 22 Mar 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 23 Mar 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 24 Mar 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 25 Mar 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 26 Mar 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 27 Mar 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 28 Mar 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 29 Mar 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 30 Mar 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 31 Mar 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <!-- April 2025 -->
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 1 Apr 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 2 Apr 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 3 Apr 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 4 Apr 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 5 Apr 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 6 Apr 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 7 Apr 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 8 Apr 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 9 Apr 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 10 Apr 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 11 Apr 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 12 Apr 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 13 Apr 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 14 Apr 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 15 Apr 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 16 Apr 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PERIODE 3: April - Mei -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="bi bi-calendar-range"></i> Periode 3: 17 April - 16 Mei 2025</h4>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 17 Apr 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 18 Apr 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 19 Apr 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 20 Apr 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 21 Apr 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 22 Apr 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 23 Apr 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 24 Apr 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 25 Apr 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 26 Apr 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 27 Apr 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 28 Apr 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 29 Apr 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 30 Apr 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 1 Mei 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 2 Mei 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 3 Mei 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 4 Mei 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 5 Mei 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 6 Mei 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 7 Mei 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 8 Mei 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 9 Mei 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 10 Mei 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 11 Mei 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 12 Mei 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 13 Mei 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 14 Mei 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 15 Mei 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 16 Mei 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- PERIODE 4: Mei - Juni -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="bi bi-calendar-range"></i> Periode 4: 17 Mei - 16 Juni 2025</h4>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 17 Mei 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 18 Mei 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 19 Mei 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 20 Mei 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 21 Mei 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 22 Mei 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 23 Mei 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 24 Mei 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 25 Mei 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 26 Mei 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 27 Mei 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 28 Mei 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 29 Mei 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 30 Mei 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 31 Mei 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <!-- Juni 2025 -->
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 1 Jun 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 2 Jun 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 3 Jun 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 4 Jun 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 5 Jun 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 6 Jun 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 7 Jun 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 8 Jun 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 9 Jun 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 10 Jun 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 11 Jun 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 12 Jun 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 13 Jun 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 14 Jun 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 15 Jun 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 16 Jun 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PERIODE 5: Juni - Juli -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="bi bi-calendar-range"></i> Periode 5: 17 Juni - 16 Juli 2025</h4>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 17 Jun 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 18 Jun 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 19 Jun 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 20 Jun 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 21 Jun 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 22 Jun 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 23 Jun 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 24 Jun 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 25 Jun 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 26 Jun 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 27 Jun 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 28 Jun 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 29 Jun 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 30 Jun 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 31 Jun 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <!-- Juli 2025 -->
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Minggu, 1 Jul 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 2 Jul 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 3 Jul 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 4 Jul 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 5 Jul 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 6 Jul 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 7 Jul 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 8 Jul 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 9 Jul 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 10 Jul 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 11 Jul 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 12 Jul 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 13 Jul 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 14 Jul 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 15 Jul 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 16 Jul 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PERIODE 6: Juli - Agustus -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="bi bi-calendar-range"></i> Periode 6: 17 Juli - 16 Agustus 2025</h4>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 17 Jul 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 18 Jul 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 19 Jul 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 20 Jul 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 21 Jul 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 22 Jul 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 23 Jul 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 24 Jul 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 25 Jul 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 26 Jul 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 27 Jul 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 28 Jul 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 29 Jul 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 30 Jul 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 31 Jul 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <!-- Agustus 2025 -->
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 1 Agu 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 2 Agu 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 3 Agu 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 4 Agu 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 5 Agu 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 6 Agu 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 7 Agu 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 8 Agu 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 9 Agu 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 10 Agu 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 11 Agu 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 12 Agu 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 13 Agu 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 14 Agu 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 15 Agu 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 16 Agu 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PERIODE 7: Agustus - September -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="bi bi-calendar-range"></i> Periode 7: 17 Agustus - 16 September 2025</h4>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 17 Agu 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 18 Agu 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 19 Agu 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 20 Agu 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 21 Agu 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 22 Agu 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 23 Agu 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 24 Agu 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 25 Agu 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 26 Agu 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 27 Agu 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 28 Agu 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 29 Agu 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 30 Agu 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 31 Agu 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <!-- September 2025 -->
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 1 Sep 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 2 Sep 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 3 Sep 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 4 Sep 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 5 Sep 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 6 Sep 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 7 Sep 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 8 Sep 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 9 Sep 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 10 Sep 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 11 Sep 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 12 Sep 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 13 Sep 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 14 Sep 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 15 Sep 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 16 Sep 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PERIODE 8: September - Oktober -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="bi bi-calendar-range"></i> Periode 8: 17 September - 16 Oktober 2025</h4>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 17 Sep 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 18 Sep 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 19 Sep 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 20 Sep 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 21 Sep 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 22 Sep 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 23 Sep 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 24 Sep 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 25 Sep 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 26 Sep 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 27 Sep 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 28 Sep 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 29 Sep 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <!-- Oktober 2025 -->
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 1 Okt 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 2 Okt 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 3 Okt 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 4 Okt 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 5 Okt 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 6 Okt 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 7 Okt 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 8 Okt 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 9 Okt 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 10 Okt 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 11 Okt 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 12 Okt 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 13 Okt 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 14 Okt 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 15 Okt 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 16 Okt 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PERIODE 9: Oktober - November -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="bi bi-calendar-range"></i> Periode 9: 17 Oktober - 16 November 2025</h4>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 17 Okt 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 18 Okt 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 19 Okt 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 20 Okt 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 21 Okt 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 22 Okt 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 23 Okt 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 24 Okt 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 25 Okt 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 26 Okt 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 27 Okt 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 28 Okt 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 29 Okt 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 30 Okt 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 31 Okt 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <!-- November 2025 -->
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 1 Nov 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 2 Nov 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 3 Nov 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 4 Nov 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 5 Nov 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 6 Nov 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 7 Nov 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 8 Nov 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 9 Nov 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 10 Nov 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 11 Nov 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 12 Nov 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 13 Nov 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 14 Nov 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 15 Nov 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 16 Nov 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 17 Nov 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 18 Nov 2025</span><span>Standby (Semua Sopir)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PERIODE 10: November - Desember -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="bi bi-calendar-range"></i> Periode 10: 17 November - 16 Desember 2025</h4>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 17 Nov 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 18 Nov 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 19 Nov 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 20 Nov 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 21 Nov 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 22 Nov 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 23 Nov 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 24 Nov 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 25 Nov 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 26 Nov 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 27 Nov 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 28 Nov 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 29 Nov 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 30 Nov 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 1 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 2 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 3 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 4 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 5 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 6 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 7 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 8 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 9 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 10 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 11 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 12 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 13 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 14 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 15 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 16 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 17 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 18 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 19 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 20 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 21 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 22 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 23 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 24 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 25 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 26 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 27 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 28 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 29 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 30 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 31 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <!-- Desember 2025 -->
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 1 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 2 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 3 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 4 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 5 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 6 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 7 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 8 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 9 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 10 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 11 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 12 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 13 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 14 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 15 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 16 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 17 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center sunday-item"><span>Minggu, 18 Des 2025</span><span>Standby (Semua Sopir)</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Senin, 19 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 20 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 21 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 22 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 23 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Rabu, 24 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 25 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Selasa, 26 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 27 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Jumat, 28 Des 2025</span><span class="driver-name">DEKSI DEREK</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 29 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Kamis, 30 Des 2025</span><span class="driver-name">JOHN E. JAWALI</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><span>Sabtu, 31 Des 2025</span><span class="driver-name">ASMARAMAN LARUNSEDU</span></li>
