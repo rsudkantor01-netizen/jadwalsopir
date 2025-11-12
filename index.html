@@ -106,19 +106,7 @@
                         </h2>
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-4">
-                                <div id="todayDriverColor" class="w-4 h-4 rounded-full"></div>
-                                <div>
-                                    <h3 id="todayDriverName" class="text-xl font-bold text-gray-800"></h3>
-                                    <p id="todayDriverStatus" class="text-gray-600"></p>
-                                </div>
-                            </div>
-                            <button id="todayWhatsAppBtn" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
-                                <i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>
-                                WhatsApp
-                            </button>
-                        </div>
+                        <!-- Content will be dynamically inserted here -->
                     </div>
                 </div>
             </section>
@@ -160,7 +148,7 @@
                         <div class="flex items-center text-sm">
                             <i data-lucide="clock" class="w-4 h-4 mr-2 text-gray-500"></i>
                             <span class="font-medium">Akhir Pekan:</span>
-                            <span class="ml-2 text-gray-600">STANDBY</span>
+                            <span class="ml-2 text-gray-600">STANDBY (Minggu)</span>
                         </div>
                         <div class="flex items-center text-sm">
                             <i data-lucide="message-circle" class="w-4 h-4 mr-2 text-gray-500"></i>
@@ -188,7 +176,7 @@
                         <div class="flex items-center text-sm">
                             <i data-lucide="clock" class="w-4 h-4 mr-2 text-gray-500"></i>
                             <span class="font-medium">Akhir Pekan:</span>
-                            <span class="ml-2 text-gray-600">STANDBY</span>
+                            <span class="ml-2 text-gray-600">STANDBY (Minggu)</span>
                         </div>
                         <div class="flex items-center text-sm">
                             <i data-lucide="message-circle" class="w-4 h-4 mr-2 text-gray-500"></i>
@@ -216,7 +204,7 @@
                         <div class="flex items-center text-sm">
                             <i data-lucide="clock" class="w-4 h-4 mr-2 text-gray-500"></i>
                             <span class="font-medium">Akhir Pekan:</span>
-                            <span class="ml-2 text-gray-600">STANDBY</span>
+                            <span class="ml-2 text-gray-600">STANDBY (Minggu)</span>
                         </div>
                         <div class="flex items-center text-sm">
                             <i data-lucide="message-circle" class="w-4 h-4 mr-2 text-gray-500"></i>
@@ -246,10 +234,26 @@
                 </div>
             </section>
 
+            <!-- Legend -->
+            <section class="mt-6 bg-white rounded-lg shadow p-4">
+                <h3 class="font-bold text-lg mb-3">Keterangan Jadwal</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-4 h-4 rounded bg-gray-100 border border-gray-300"></div>
+                        <span class="text-sm">Hari Kerja (Senin-Sabtu) - 1 Sopir Bertugas</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-4 h-4 rounded bg-red-50 border border-red-200"></div>
+                        <span class="text-sm">Hari Minggu - 3 Sopir Standby Bersama</span>
+                    </div>
+                </div>
+            </section>
+
             <!-- Footer -->
             <footer class="text-center mt-8 text-gray-600 text-sm">
                 <p>RSUD Kabupaten Kepulauan Talaud - Tahun 2025</p>
                 <p class="mt-1">Hubungi petugas yang bertugas untuk keadaan darurat</p>
+                <p class="mt-2 text-xs text-gray-500">⚡ Setiap Hari Minggu: Ketiga sopir standby bersama untuk jaminan ketersediaan ambulance</p>
             </footer>
         </div>
     </div>
@@ -291,11 +295,14 @@
         const dayNames = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 
         // Get driver for specific day
-        function getDriverForDay(dayName, dayType) {
-            if (dayType === 'weekend') {
-                return drivers.find(driver => driver.weekendDuty === 'STANDBY') || null;
+        function getDriversForDay(dayName, dayType) {
+            if (dayName === 'Minggu') {
+                // For Sunday only, all drivers are on standby
+                return drivers.filter(driver => driver.weekendDuty === 'STANDBY');
             }
-            return drivers.find(driver => driver.dutyDays.includes(dayName)) || null;
+            // For other days (including Saturday), return specific driver for that day
+            const assignedDriver = drivers.find(driver => driver.dutyDays.includes(dayName));
+            return assignedDriver ? [assignedDriver] : [];
         }
 
         // Generate schedule for given month and year
@@ -309,13 +316,13 @@
                 const date = new Date(year, month - 1, day);
                 const dayName = dayNames[date.getDay()];
                 const dayType = (date.getDay() === 0 || date.getDay() === 6) ? 'weekend' : 'weekday';
-                const driver = getDriverForDay(dayName, dayType);
+                const drivers = getDriversForDay(dayName, dayType);
 
                 schedule.push({
                     date: `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`,
                     dayName,
                     dayType,
-                    driver
+                    drivers
                 });
             }
 
@@ -332,7 +339,7 @@
             schedule.forEach((item, index) => {
                 const scheduleItem = document.createElement('div');
                 scheduleItem.className = `p-3 rounded-lg border ${
-                    item.dayType === 'weekend'
+                    item.dayName === 'Minggu'
                         ? 'bg-red-50 border-red-200'
                         : 'bg-white border-gray-200'
                 } hover:shadow-md transition-shadow`;
@@ -344,29 +351,33 @@
                             <p class="text-xs text-gray-600">${item.dayName}</p>
                         </div>
                         <span class="${
-                            item.dayType === 'weekend' 
+                            item.dayName === 'Minggu' 
                                 ? 'bg-red-100 text-red-800' 
                                 : 'bg-gray-100 text-gray-800'
                         } text-xs px-2 py-1 rounded-full">
-                            ${item.dayType === 'weekend' ? 'Weekend' : 'Kerja'}
+                            ${item.dayName === 'Minggu' ? 'Minggu' : 'Kerja'}
                         </span>
                     </div>
-                    ${item.driver ? `
+                    ${item.drivers && item.drivers.length > 0 ? `
                         <div class="space-y-2">
-                            <div class="flex items-center space-x-2">
-                                <div class="w-3 h-3 rounded-full ${item.driver.color}"></div>
-                                <div class="flex-1">
-                                    <p class="text-sm font-medium">${item.driver.name}</p>
-                                    <p class="text-xs text-gray-500">${item.driver.phone}</p>
+                            ${item.drivers.map(driver => `
+                                <div class="space-y-1">
+                                    <div class="flex items-center space-x-2">
+                                        <div class="w-3 h-3 rounded-full ${driver.color}"></div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium">${driver.name}</p>
+                                            <p class="text-xs text-gray-500">${driver.phone}</p>
+                                        </div>
+                                    </div>
+                                    <button 
+                                        class="w-full bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded text-xs flex items-center justify-center transition-colors"
+                                        onclick="openWhatsApp('${driver.phone}')"
+                                    >
+                                        <i data-lucide="message-circle" class="w-3 h-3 mr-1"></i>
+                                        WA
+                                    </button>
                                 </div>
-                            </div>
-                            <button 
-                                class="w-full bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded text-xs flex items-center justify-center transition-colors"
-                                onclick="openWhatsApp('${item.driver.phone}')"
-                            >
-                                <i data-lucide="message-circle" class="w-3 h-3 mr-1"></i>
-                                WA
-                            </button>
+                            `).join('')}
                         </div>
                     ` : ''}
                 `;
@@ -392,22 +403,48 @@
         function showTodayDriver() {
             const today = new Date();
             const dayName = dayNames[today.getDay()];
-            const dayType = (today.getDay() === 0 || today.getDay() === 6) ? 'weekend' : 'weekday';
-            const todayDriver = getDriverForDay(dayName, dayType);
+            const day = today.getDate();
+            const monthName = monthNames[today.getMonth()];
+            const year = today.getFullYear();
+            const formattedDate = `${dayName}, ${day} ${monthName} ${year}`;
+            const todayDrivers = getDriversForDay(dayName);
             
-            if (todayDriver) {
+            if (todayDrivers && todayDrivers.length > 0) {
                 const todayDriverCard = document.getElementById('todayDriverCard');
-                const todayDriverName = document.getElementById('todayDriverName');
-                const todayDriverStatus = document.getElementById('todayDriverStatus');
-                const todayDriverColor = document.getElementById('todayDriverColor');
-                const todayWhatsAppBtn = document.getElementById('todayWhatsAppBtn');
                 
-                todayDriverName.textContent = todayDriver.name;
-                todayDriverStatus.textContent = dayType === 'weekend' ? 'STANDBY' : 'DINAS';
-                todayDriverColor.className = `w-4 h-4 rounded-full ${todayDriver.color}`;
-                todayWhatsAppBtn.onclick = () => openWhatsApp(todayDriver.phone);
+                // Update card title with formatted date
+                const cardTitle = todayDriverCard.querySelector('h2');
+                cardTitle.innerHTML = `
+                    <i data-lucide="clock" class="w-5 h-5 mr-2"></i>
+                    Petugas Hari Ini (${formattedDate})
+                `;
+                
+                // Clear existing driver content
+                const cardContent = todayDriverCard.querySelector('.p-6');
+                cardContent.innerHTML = `
+                    <div class="space-y-4">
+                        ${todayDrivers.map(driver => `
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-4 h-4 rounded-full ${driver.color}"></div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-800">${driver.name}</h3>
+                                        <p class="text-gray-600">${dayName === 'Minggu' ? 'STANDBY' : 'DINAS'}</p>
+                                    </div>
+                                </div>
+                                <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors" onclick="openWhatsApp('${driver.phone}')">
+                                    <i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>
+                                    WhatsApp
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
                 
                 todayDriverCard.classList.remove('hidden');
+                
+                // Re-initialize lucide icons for updated content
+                lucide.createIcons();
             }
         }
 
@@ -454,4 +491,4 @@
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
 </body>
-</html>
+</html
