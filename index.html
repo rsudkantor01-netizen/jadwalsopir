@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jadwal Sopir Ambulance - RSUD Kabupaten Kepulauan Talaud 2025</title>
-    <meta name="description" content="Jadwal sopir ambulance RSUD Kabupaten Kepulauan Talaud Tahun 2025">
-    <meta name="keywords" content="ambulance, sopir, jadwal, RSUD, Kepulauan Talaud">
+    <meta name="description" content="Jadwal lengkap sopir ambulance RSUD Kabupaten Kepulauan Talaud tahun 2025 dengan kontak WhatsApp untuk komunikasi cepat">
+    <meta name="keywords" content="ambulance, RSUD Talaud, jadwal sopir, kontak darurat, kesehatan">
     <meta name="author" content="RSUD Kabupaten Kepulauan Talaud">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Jadwal Sopir Ambulance - RSUD Kabupaten Kepulauan Talaud 2025">
-    <meta property="og:description" content="Jadwal sopir ambulance RSUD Kabupaten Kepulauan Talaud Tahun 2025">
+    <meta property="og:description" content="Jadwal lengkap sopir ambulance dengan kontak WhatsApp untuk komunikasi cepat">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="">
+    <meta property="og:locale" content="id_ID">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -21,474 +21,476 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     
+    <!-- Custom Styles -->
     <style>
-        /* Custom scrollbar styling */
+        /* Custom scrollbar */
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
             background: #f1f1f1;
-            border-radius: 3px;
+            border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #888;
-            border-radius: 3px;
+            border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
         
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Smooth transitions */
+        * {
+            transition: all 0.3s ease;
         }
         
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
-        
-        /* Loading spinner */
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #dc2626;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-break {
+                page-break-inside: avoid;
+            }
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-red-50 to-blue-50 min-h-screen">
-    <!-- Loading Screen -->
-    <div id="loadingScreen" class="fixed inset-0 bg-white bg-opacity-90 flex items-center justify-center z-50">
-        <div class="text-center">
-            <div class="spinner mx-auto mb-4"></div>
-            <p class="text-gray-600">Memuat jadwal sopir ambulance...</p>
+<body class="bg-gradient-to-br from-red-50 to-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg border-l-4 border-red-600 sticky top-0 z-50 no-print">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                        🚑 Jadwal Sopir Ambulance
+                    </h1>
+                    <p class="text-lg text-gray-600">
+                        RSUD Kabupaten Kepulauan Talaud - Tahun 2025
+                    </p>
+                </div>
+                <div class="mt-4 md:mt-0 flex items-center gap-2">
+                    <i data-lucide="clock" class="w-5 h-5 text-red-600"></i>
+                    <span class="text-sm font-medium text-gray-700">
+                        Jam Kerja: 08:00 - 08:00 (24 Jam)
+                    </span>
+                </div>
+            </div>
         </div>
-    </div>
+    </header>
 
     <!-- Main Content -->
-    <div id="mainContent" class="hidden">
-        <div class="max-w-7xl mx-auto p-4">
-            <!-- Header -->
-            <header class="text-center mb-8 fade-in">
-                <div class="flex items-center justify-center mb-4">
-                    <div class="bg-red-600 text-white p-3 rounded-full mr-3">
-                        <i data-lucide="alert-circle" class="w-8 h-8"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-3xl font-bold text-gray-800">
-                            JADWAL SOPIR AMBULANCE
-                        </h1>
-                        <p class="text-xl text-gray-600">
-                            RSUD KABUPATEN KEPULAUAN TALAUD
-                        </p>
-                        <p class="text-lg text-gray-500">TAHUN 2025</p>
-                    </div>
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Today's Status -->
+        <section id="today-status" class="mb-8 print-break">
+            <div class="bg-gradient-to-r from-red-600 to-red-700 text-white rounded-xl shadow-lg p-6">
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <i data-lucide="alert-circle" class="w-6 h-6"></i>
+                    <span id="today-title">Jadwal Hari Ini</span>
+                </h2>
+                <div id="today-drivers" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Today's drivers will be inserted here -->
                 </div>
-            </header>
-
-            <!-- Today's Driver Card -->
-            <section id="todayDriverCard" class="mb-6 hidden">
-                <div class="bg-white rounded-lg shadow-lg border-2 border-red-200">
-                    <div class="bg-red-50 p-4 border-b border-red-200">
-                        <h2 class="flex items-center text-red-700 font-bold text-lg">
-                            <i data-lucide="clock" class="w-5 h-5 mr-2"></i>
-                            Petugas Hari Ini
-                        </h2>
-                    </div>
-                    <div class="p-6">
-                        <!-- Content will be dynamically inserted here -->
-                    </div>
+                <div id="sunday-notice" class="mt-4 p-3 bg-yellow-500/20 rounded-lg border border-yellow-400/50 hidden">
+                    <p class="text-sm font-medium text-yellow-100">
+                        <i data-lucide="alert-circle" class="w-4 h-4 inline mr-2"></i>
+                        Hari Minggu: Semua sopir dalam status siaga bersama
+                    </p>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Month/Year Selector -->
-            <section class="flex justify-center mb-6 space-x-4">
-                <select id="monthSelector" class="px-4 py-2 border border-gray-300 rounded-lg bg-white">
-                    <option value="1">Januari</option>
-                    <option value="2">Februari</option>
-                    <option value="3">Maret</option>
-                    <option value="4">April</option>
-                    <option value="5">Mei</option>
-                    <option value="6">Juni</option>
-                    <option value="7">Juli</option>
-                    <option value="8">Agustus</option>
-                    <option value="9">September</option>
-                    <option value="10">Oktober</option>
-                    <option value="11">November</option>
-                    <option value="12">Desember</option>
-                </select>
-                <select id="yearSelector" class="px-4 py-2 border border-gray-300 rounded-lg bg-white">
-                    <option value="2025">2025</option>
-                </select>
-            </section>
+        <!-- Driver Cards -->
+        <section class="mb-8 print-break">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <i data-lucide="users" class="w-6 h-6 text-red-600"></i>
+                Data Sopir Ambulance
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="driver-cards">
+                <!-- Driver cards will be inserted here -->
+            </div>
+        </section>
 
-            <!-- Driver Info Cards -->
-            <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                <div class="driver-card bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4">
-                    <div class="flex items-center space-x-3 mb-3">
-                        <div class="w-4 h-4 rounded-full bg-blue-500"></div>
-                        <h3 class="text-lg font-bold">JOHN E. JAWALI</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex items-center text-sm">
-                            <i data-lucide="calendar" class="w-4 h-4 mr-2 text-gray-500"></i>
-                            <span class="font-medium">Hari Kerja:</span>
-                            <span class="ml-2 text-gray-600">Senin, Kamis</span>
-                        </div>
-                        <div class="flex items-center text-sm">
-                            <i data-lucide="clock" class="w-4 h-4 mr-2 text-gray-500"></i>
-                            <span class="font-medium">Akhir Pekan:</span>
-                            <span class="ml-2 text-gray-600">STANDBY (Minggu)</span>
-                        </div>
-                        <div class="flex items-center text-sm">
-                            <i data-lucide="message-circle" class="w-4 h-4 mr-2 text-gray-500"></i>
-                            <span class="font-medium">WhatsApp:</span>
-                            <span class="ml-2 text-gray-600">085256837722</span>
-                        </div>
-                        <button class="w-full mt-3 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center justify-center transition-colors" onclick="openWhatsApp('085256837722')">
-                            <i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>
-                            Hubungi via WhatsApp
-                        </button>
-                    </div>
-                </div>
-
-                <div class="driver-card bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4">
-                    <div class="flex items-center space-x-3 mb-3">
-                        <div class="w-4 h-4 rounded-full bg-green-500"></div>
-                        <h3 class="text-lg font-bold">DEKSI DEREK</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex items-center text-sm">
-                            <i data-lucide="calendar" class="w-4 h-4 mr-2 text-gray-500"></i>
-                            <span class="font-medium">Hari Kerja:</span>
-                            <span class="ml-2 text-gray-600">Selasa, Jumat</span>
-                        </div>
-                        <div class="flex items-center text-sm">
-                            <i data-lucide="clock" class="w-4 h-4 mr-2 text-gray-500"></i>
-                            <span class="font-medium">Akhir Pekan:</span>
-                            <span class="ml-2 text-gray-600">STANDBY (Minggu)</span>
-                        </div>
-                        <div class="flex items-center text-sm">
-                            <i data-lucide="message-circle" class="w-4 h-4 mr-2 text-gray-500"></i>
-                            <span class="font-medium">WhatsApp:</span>
-                            <span class="ml-2 text-gray-600">081243834417</span>
-                        </div>
-                        <button class="w-full mt-3 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center justify-center transition-colors" onclick="openWhatsApp('081243834417')">
-                            <i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>
-                            Hubungi via WhatsApp
-                        </button>
-                    </div>
-                </div>
-
-                <div class="driver-card bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4">
-                    <div class="flex items-center space-x-3 mb-3">
-                        <div class="w-4 h-4 rounded-full bg-purple-500"></div>
-                        <h3 class="text-lg font-bold">ASMARAMAN LARUNSEDU</h3>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex items-center text-sm">
-                            <i data-lucide="calendar" class="w-4 h-4 mr-2 text-gray-500"></i>
-                            <span class="font-medium">Hari Kerja:</span>
-                            <span class="ml-2 text-gray-600">Rabu, Sabtu</span>
-                        </div>
-                        <div class="flex items-center text-sm">
-                            <i data-lucide="clock" class="w-4 h-4 mr-2 text-gray-500"></i>
-                            <span class="font-medium">Akhir Pekan:</span>
-                            <span class="ml-2 text-gray-600">STANDBY (Minggu)</span>
-                        </div>
-                        <div class="flex items-center text-sm">
-                            <i data-lucide="message-circle" class="w-4 h-4 mr-2 text-gray-500"></i>
-                            <span class="font-medium">WhatsApp:</span>
-                            <span class="ml-2 text-gray-600">085240186055</span>
-                        </div>
-                        <button class="w-full mt-3 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center justify-center transition-colors" onclick="openWhatsApp('085240186055')">
-                            <i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>
-                            Hubungi via WhatsApp
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Schedule Calendar -->
-            <section class="bg-white rounded-lg shadow-lg">
-                <div class="bg-gray-50 p-4 border-b border-gray-200">
-                    <h2 class="flex items-center font-bold text-lg">
-                        <i data-lucide="calendar" class="w-5 h-5 mr-2"></i>
-                        Jadwal Lengkap <span id="currentMonth"></span> <span id="currentYear"></span>
+        <!-- Calendar View -->
+        <section class="mb-8 print-break">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                    <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-6 h-6 text-red-600"></i>
+                        <span id="calendar-title">Kalender Jadwal</span>
                     </h2>
-                </div>
-                <div class="p-4">
-                    <div id="scheduleGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-96 overflow-y-auto custom-scrollbar">
-                        <!-- Schedule items will be inserted here -->
+                    <div class="flex gap-2 mt-4 md:mt-0">
+                        <button onclick="changeMonth(-1)" class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 no-print">
+                            ←
+                        </button>
+                        <button onclick="changeMonth(1)" class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 no-print">
+                            →
+                        </button>
                     </div>
                 </div>
-            </section>
+                
+                <!-- Day headers -->
+                <div class="grid grid-cols-7 gap-1 mb-2">
+                    <div class="text-center font-semibold text-sm text-gray-700 p-2">Minggu</div>
+                    <div class="text-center font-semibold text-sm text-gray-700 p-2">Senin</div>
+                    <div class="text-center font-semibold text-sm text-gray-700 p-2">Selasa</div>
+                    <div class="text-center font-semibold text-sm text-gray-700 p-2">Rabu</div>
+                    <div class="text-center font-semibold text-sm text-gray-700 p-2">Kamis</div>
+                    <div class="text-center font-semibold text-sm text-gray-700 p-2">Jumat</div>
+                    <div class="text-center font-semibold text-sm text-gray-700 p-2">Sabtu</div>
+                </div>
+                
+                <!-- Calendar days -->
+                <div id="calendar-days" class="grid grid-cols-7 gap-1">
+                    <!-- Calendar days will be inserted here -->
+                </div>
+            </div>
+        </section>
 
-            <!-- Legend -->
-            <section class="mt-6 bg-white rounded-lg shadow p-4">
-                <h3 class="font-bold text-lg mb-3">Keterangan Jadwal</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-4 h-4 rounded bg-gray-100 border border-gray-300"></div>
-                        <span class="text-sm">Hari Kerja (Senin-Sabtu) - 1 Sopir Bertugas</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-4 h-4 rounded bg-red-50 border border-red-200"></div>
-                        <span class="text-sm">Hari Minggu - 3 Sopir Standby Bersama</span>
+        <!-- Important Info -->
+        <section class="mb-8 print-break">
+            <div class="bg-blue-50 border-blue-200 rounded-xl p-6">
+                <div class="flex items-start gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-blue-600 mt-0.5"></i>
+                    <div>
+                        <h3 class="font-semibold text-blue-900 mb-1">Informasi Penting</h3>
+                        <ul class="text-sm text-blue-800 space-y-1">
+                            <li>• Setiap sopir bertugas 2 hari kerja per minggu</li>
+                            <li>• Hari Minggu semua sopir dalam status siaga bersama</li>
+                            <li>• Jam kerja dimulai pukul 08:00 WITA selama 24 jam</li>
+                            <li>• Klik tombol WhatsApp untuk komunikasi langsung dengan sopir</li>
+                        </ul>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+    </main>
 
-            <!-- Footer -->
-            <footer class="text-center mt-8 text-gray-600 text-sm">
-                <p>RSUD Kabupaten Kepulauan Talaud - Tahun 2025</p>
-                <p class="mt-1">Hubungi petugas yang bertugas untuk keadaan darurat</p>
-                <p class="mt-2 text-xs text-gray-500">⚡ Setiap Hari Minggu: Ketiga sopir standby bersama untuk jaminan ketersediaan ambulance</p>
-            </footer>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Hospital Info -->
+                <div class="md:col-span-2">
+                    <h3 class="text-lg font-semibold mb-4 text-red-400">RSUD Kabupaten Kepulauan Talaud</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Rumah Sakit Umum Daerah Kabupaten Kepulauan Talaud menyediakan layanan kesehatan profesional dengan fasilitas ambulance siaga 24 jam untuk melayani masyarakat.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-red-400">Layanan Cepat</h3>
+                    <div class="space-y-2 text-sm">
+                        <button onclick="scrollToToday()" class="text-gray-300 hover:text-white flex items-center gap-2 w-full text-left">
+                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                            Lihat Jadwal Hari Ini
+                        </button>
+                        <button onclick="contactAllDrivers()" class="text-gray-300 hover:text-white flex items-center gap-2 w-full text-left">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                            Hubungi Semua Sopir
+                        </button>
+                        <a href="tel:119" class="text-gray-300 hover:text-white flex items-center gap-2 inline-block">
+                            <i data-lucide="phone" class="w-4 h-4"></i>
+                            Panggil Ambulance
+                        </a>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="clock" class="w-4 h-4 text-red-400"></i>
+                            <span class="text-gray-300">Siaga 24 Jam Setiap Hari</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 mt-8 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="text-sm text-gray-400">
+                        © 2025 RSUD Kabupaten Kepulauan Talaud. Hak Cipta Dilindungi.
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-gray-400">
+                        <span>Dikembangkan untuk:</span>
+                        <span class="text-red-400 font-semibold">Layanan Kesehatan Masyarakat</span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </footer>
 
+    <!-- JavaScript -->
     <script>
         // Driver data
         const drivers = [
             {
-                id: 1,
+                id: '1',
                 name: 'JOHN E. JAWALI',
-                phone: '085256837722',
                 dutyDays: ['Senin', 'Kamis'],
-                weekendDuty: 'STANDBY',
-                color: 'bg-blue-500'
+                standbyDays: ['Minggu'],
+                phone: '085256837722',
+                whatsapp: '6285256837722'
             },
             {
-                id: 2,
+                id: '2',
                 name: 'DEKSI DEREK',
-                phone: '081243834417',
                 dutyDays: ['Selasa', 'Jumat'],
-                weekendDuty: 'STANDBY',
-                color: 'bg-green-500'
+                standbyDays: ['Minggu'],
+                phone: '081243834417',
+                whatsapp: '6281243834417'
             },
             {
-                id: 3,
+                id: '3',
                 name: 'ASMARAMAN LARUNSEDU',
-                phone: '085240186055',
                 dutyDays: ['Rabu', 'Sabtu'],
-                weekendDuty: 'STANDBY',
-                color: 'bg-purple-500'
+                standbyDays: ['Minggu'],
+                phone: '085240186055',
+                whatsapp: '6285240186055'
             }
-        ];
-
-        const monthNames = [
-            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
         ];
 
         const dayNames = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        
+        let currentMonth = new Date().getMonth();
+        let currentYear = 2025;
 
-        // Get driver for specific day
-        function getDriversForDay(dayName, dayType) {
-            if (dayName === 'Minggu') {
-                // For Sunday only, all drivers are on standby
-                return drivers.filter(driver => driver.weekendDuty === 'STANDBY');
-            }
-            // For other days (including Saturday), return specific driver for that day
-            const assignedDriver = drivers.find(driver => driver.dutyDays.includes(dayName));
-            return assignedDriver ? [assignedDriver] : [];
-        }
-
-        // Generate schedule for given month and year
-        function generateSchedule(month, year) {
-            const firstDay = new Date(year, month - 1, 1);
-            const lastDay = new Date(year, month, 0);
-            const daysInMonth = lastDay.getDate();
-            const schedule = [];
-
-            for (let day = 1; day <= daysInMonth; day++) {
-                const date = new Date(year, month - 1, day);
-                const dayName = dayNames[date.getDay()];
-                const dayType = (date.getDay() === 0 || date.getDay() === 6) ? 'weekend' : 'weekday';
-                const drivers = getDriversForDay(dayName, dayType);
-
-                schedule.push({
-                    date: `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`,
-                    dayName,
-                    dayType,
-                    drivers
-                });
-            }
-
-            return schedule;
-        }
-
-        // Render schedule grid
-        function renderSchedule(month, year) {
-            const schedule = generateSchedule(month, year);
-            const scheduleGrid = document.getElementById('scheduleGrid');
-            
-            scheduleGrid.innerHTML = '';
-            
-            schedule.forEach((item, index) => {
-                const scheduleItem = document.createElement('div');
-                scheduleItem.className = `p-3 rounded-lg border ${
-                    item.dayName === 'Minggu'
-                        ? 'bg-red-50 border-red-200'
-                        : 'bg-white border-gray-200'
-                } hover:shadow-md transition-shadow`;
-                
-                scheduleItem.innerHTML = `
-                    <div class="flex justify-between items-start mb-2">
-                        <div>
-                            <p class="font-semibold text-sm">${item.date}</p>
-                            <p class="text-xs text-gray-600">${item.dayName}</p>
-                        </div>
-                        <span class="${
-                            item.dayName === 'Minggu' 
-                                ? 'bg-red-100 text-red-800' 
-                                : 'bg-gray-100 text-gray-800'
-                        } text-xs px-2 py-1 rounded-full">
-                            ${item.dayName === 'Minggu' ? 'Minggu' : 'Kerja'}
-                        </span>
-                    </div>
-                    ${item.drivers && item.drivers.length > 0 ? `
-                        <div class="space-y-2">
-                            ${item.drivers.map(driver => `
-                                <div class="space-y-1">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="w-3 h-3 rounded-full ${driver.color}"></div>
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium">${driver.name}</p>
-                                            <p class="text-xs text-gray-500">${driver.phone}</p>
-                                        </div>
-                                    </div>
-                                    <button 
-                                        class="w-full bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded text-xs flex items-center justify-center transition-colors"
-                                        onclick="openWhatsApp('${driver.phone}')"
-                                    >
-                                        <i data-lucide="message-circle" class="w-3 h-3 mr-1"></i>
-                                        WA
-                                    </button>
-                                </div>
-                            `).join('')}
-                        </div>
-                    ` : ''}
-                `;
-                
-                scheduleGrid.appendChild(scheduleItem);
-            });
-            
-            // Update month/year display
-            document.getElementById('currentMonth').textContent = monthNames[month - 1];
-            document.getElementById('currentYear').textContent = year;
-            
-            // Re-initialize lucide icons for new elements
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
-        }
+            updateTodayStatus();
+            renderDriverCards();
+            renderCalendar();
+        });
 
-        // Open WhatsApp
-        function openWhatsApp(phone) {
-            const cleanPhone = phone.replace(/\D/g, '');
-            window.open(`https://wa.me/${cleanPhone}`, '_blank');
-        }
-
-        // Show today's driver
-        function showTodayDriver() {
+        // Update today's status
+        function updateTodayStatus() {
             const today = new Date();
             const dayName = dayNames[today.getDay()];
-            const day = today.getDate();
-            const monthName = monthNames[today.getMonth()];
-            const year = today.getFullYear();
-            const formattedDate = `${dayName}, ${day} ${monthName} ${year}`;
             const todayDrivers = getDriversForDay(dayName);
             
-            if (todayDrivers && todayDrivers.length > 0) {
-                const todayDriverCard = document.getElementById('todayDriverCard');
+            document.getElementById('today-title').textContent = `Jadwal Hari Ini - ${dayName}, ${today.getDate()} ${monthNames[today.getMonth()]} 2025`;
+            
+            const driversContainer = document.getElementById('today-drivers');
+            driversContainer.innerHTML = '';
+            
+            todayDrivers.forEach(driver => {
+                const status = getDriverStatus(driver, dayName);
+                const isStandby = isStandbyDay(driver, dayName);
                 
-                // Update card title with formatted date
-                const cardTitle = todayDriverCard.querySelector('h2');
-                cardTitle.innerHTML = `
-                    <i data-lucide="clock" class="w-5 h-5 mr-2"></i>
-                    Petugas Hari Ini (${formattedDate})
+                const driverCard = document.createElement('div');
+                driverCard.className = 'bg-white/10 backdrop-blur rounded-lg p-4';
+                driverCard.innerHTML = `
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-semibold text-lg">${driver.name}</h3>
+                        <span class="px-2 py-1 rounded text-xs font-medium ${getStatusColor(status)} text-white">
+                            ${getStatusText(status)}
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2 text-white/90 text-sm mb-3">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                        <span>${driver.phone}</span>
+                    </div>
+                    <button onclick="contactDriver('${driver.whatsapp}', '${driver.name}')" class="w-full bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-sm font-medium">
+                        <i data-lucide="message-circle" class="w-4 h-4 inline mr-2"></i>
+                        Hubungi via WhatsApp
+                    </button>
                 `;
-                
-                // Clear existing driver content
-                const cardContent = todayDriverCard.querySelector('.p-6');
-                cardContent.innerHTML = `
-                    <div class="space-y-4">
-                        ${todayDrivers.map(driver => `
-                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-4 h-4 rounded-full ${driver.color}"></div>
-                                    <div>
-                                        <h3 class="text-lg font-bold text-gray-800">${driver.name}</h3>
-                                        <p class="text-gray-600">${dayName === 'Minggu' ? 'STANDBY' : 'DINAS'}</p>
-                                    </div>
-                                </div>
-                                <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors" onclick="openWhatsApp('${driver.phone}')">
-                                    <i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>
-                                    WhatsApp
-                                </button>
+                driversContainer.appendChild(driverCard);
+            });
+            
+            // Show Sunday notice
+            const sundayNotice = document.getElementById('sunday-notice');
+            if (dayName === 'Minggu') {
+                sundayNotice.classList.remove('hidden');
+            } else {
+                sundayNotice.classList.add('hidden');
+            }
+            
+            // Reinitialize icons
+            lucide.createIcons();
+        }
+
+        // Render driver cards
+        function renderDriverCards() {
+            const container = document.getElementById('driver-cards');
+            container.innerHTML = '';
+            
+            drivers.forEach(driver => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow print-break';
+                card.innerHTML = `
+                    <div class="bg-gradient-to-r from-red-50 to-red-100 -m-6 mb-4 p-6 rounded-t-xl">
+                        <h3 class="text-lg font-bold text-gray-900">${driver.name}</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600 mb-1">Hari Tugas:</p>
+                            <div class="flex flex-wrap gap-1">
+                                ${driver.dutyDays.map(day => `<span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-medium">${day}</span>`).join('')}
                             </div>
-                        `).join('')}
+                        </div>
+                        
+                        <div>
+                            <p class="text-sm font-medium text-gray-600 mb-1">Hari Siaga:</p>
+                            <div class="flex flex-wrap gap-1">
+                                ${driver.standbyDays.map(day => `<span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-medium">${day}</span>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="pt-3 border-t">
+                            <div class="flex items-center gap-2 text-gray-700 mb-3">
+                                <i data-lucide="phone" class="w-4 h-4"></i>
+                                <span class="font-medium">${driver.phone}</span>
+                            </div>
+                            <button onclick="contactDriver('${driver.whatsapp}', '${driver.name}')" class="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium">
+                                <i data-lucide="message-circle" class="w-4 h-4 inline mr-2"></i>
+                                Hubungi via WhatsApp
+                            </button>
+                        </div>
                     </div>
                 `;
+                container.appendChild(card);
+            });
+            
+            // Reinitialize icons
+            lucide.createIcons();
+        }
+
+        // Render calendar
+        function renderCalendar() {
+            document.getElementById('calendar-title').textContent = `Kalender Jadwal ${monthNames[currentMonth]} ${currentYear}`;
+            
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            const daysInMonth = lastDay.getDate();
+            const startingDayOfWeek = firstDay.getDay();
+            
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = '';
+            
+            // Add empty cells for days before month starts
+            for (let i = 0; i < startingDayOfWeek; i++) {
+                calendarDays.appendChild(createEmptyDayCell());
+            }
+            
+            // Add days of the month
+            const today = new Date();
+            for (let i = 1; i <= daysInMonth; i++) {
+                const date = new Date(currentYear, currentMonth, i);
+                const dayName = dayNames[date.getDay()];
+                const dayDrivers = getDriversForDay(dayName);
                 
-                todayDriverCard.classList.remove('hidden');
+                const isToday = i === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear();
                 
-                // Re-initialize lucide icons for updated content
-                lucide.createIcons();
+                calendarDays.appendChild(createDayCell(i, dayName, dayDrivers, isToday));
+            }
+            
+            // Reinitialize icons
+            lucide.createIcons();
+        }
+
+        // Create empty day cell
+        function createEmptyDayCell() {
+            const cell = document.createElement('div');
+            cell.className = 'min-h-[80px] border rounded-lg p-2 bg-gray-50';
+            return cell;
+        }
+
+        // Create day cell
+        function createDayCell(date, dayName, drivers, isToday) {
+            const cell = document.createElement('div');
+            cell.className = `min-h-[80px] border rounded-lg p-2 bg-white hover:bg-gray-50 ${isToday ? 'ring-2 ring-red-500 bg-red-50' : ''}`;
+            
+            let driversHtml = '';
+            if (dayName === 'Minggu') {
+                // Show all drivers on Sunday
+                driversHtml = drivers.map(driver => {
+                    const status = getDriverStatus(driver, dayName);
+                    return `<div class="text-xs px-1 py-0.5 rounded ${getStatusColor(status)} text-white truncate" title="${driver.name}">${driver.name.split(' ')[0]}</div>`;
+                }).join('');
+            } else {
+                // Show max 2 drivers on other days
+                driversHtml = drivers.slice(0, 2).map(driver => {
+                    const status = getDriverStatus(driver, dayName);
+                    return `<div class="text-xs px-1 py-0.5 rounded ${getStatusColor(status)} text-white truncate" title="${driver.name}">${driver.name.split(' ')[0]}</div>`;
+                }).join('');
+                
+                if (drivers.length > 2) {
+                    driversHtml += `<div class="text-xs text-gray-500">+${drivers.length - 2}</div>`;
+                }
+            }
+            
+            cell.innerHTML = `
+                <div class="font-semibold text-sm text-gray-900 mb-1">${date}</div>
+                <div class="space-y-1">${driversHtml}</div>
+            `;
+            
+            return cell;
+        }
+
+        // Helper functions
+        function getDriversForDay(dayName) {
+            return drivers.filter(driver => 
+                driver.dutyDays.includes(dayName) || driver.standbyDays.includes(dayName)
+            );
+        }
+
+        function isStandbyDay(driver, dayName) {
+            return driver.standbyDays.includes(dayName);
+        }
+
+        function getDriverStatus(driver, dayName) {
+            if (driver.dutyDays.includes(dayName)) return 'duty';
+            if (driver.standbyDays.includes(dayName)) return 'standby';
+            return 'off';
+        }
+
+        function getStatusColor(status) {
+            switch (status) {
+                case 'duty': return 'bg-green-500';
+                case 'standby': return 'bg-yellow-500';
+                default: return 'bg-gray-300';
             }
         }
 
-        // Initialize app
-        function initializeApp() {
-            // Set current month and year
-            const today = new Date();
-            const currentMonth = today.getMonth() + 1;
-            const currentYear = today.getFullYear();
-            
-            document.getElementById('monthSelector').value = currentMonth;
-            document.getElementById('yearSelector').value = currentYear;
-            
-            // Show today's driver
-            showTodayDriver();
-            
-            // Render schedule
-            renderSchedule(currentMonth, currentYear);
-            
-            // Add event listeners
-            document.getElementById('monthSelector').addEventListener('change', (e) => {
-                const month = parseInt(e.target.value);
-                const year = parseInt(document.getElementById('yearSelector').value);
-                renderSchedule(month, year);
-            });
-            
-            document.getElementById('yearSelector').addEventListener('change', (e) => {
-                const month = parseInt(document.getElementById('monthSelector').value);
-                const year = parseInt(e.target.value);
-                renderSchedule(month, year);
-            });
-            
-            // Initialize lucide icons
-            lucide.createIcons();
-            
-            // Hide loading screen and show main content
-            setTimeout(() => {
-                document.getElementById('loadingScreen').classList.add('hidden');
-                document.getElementById('mainContent').classList.remove('hidden');
-            }, 1000);
+        function getStatusText(status) {
+            switch (status) {
+                case 'duty': return 'Tugas';
+                case 'standby': return 'Siaga';
+                default: return 'Libur';
+            }
         }
 
-        // Run when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initializeApp);
+        // Action functions
+        function contactDriver(phoneNumber, driverName) {
+            const message = `Halo ${driverName}, saya menghubungi dari jadwal sopir ambulance RSUD Kabupaten Kepulauan Talaud.`;
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function contactAllDrivers() {
+            drivers.forEach(driver => {
+                setTimeout(() => {
+                    contactDriver(driver.whatsapp, driver.name);
+                }, 500 * drivers.indexOf(driver));
+            });
+        }
+
+        function scrollToToday() {
+            document.getElementById('today-status').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function changeMonth(direction) {
+            currentMonth += direction;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
+        }
     </script>
 </body>
-</html
+</html>
